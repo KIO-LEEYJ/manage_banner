@@ -56,10 +56,18 @@ async function handleFormSubmit(event) {
   };
 
   try {
+    console.log("✅ [디버깅] Form 데이터 수집 완료");
+    console.log("🧾 fileName:", fileName);
+    console.log("📁 folder:", folder);
+    console.log("📅 기간:", start, "~", end);
+    console.log("🔘 active:", active, " / 🏷️ priority:", priority);
+    console.log("🔗 linkURL:", linkURL);
+    console.log("📦 newEntry 객체:", newEntry);
     const repo = 'KIO-LEEYJ/manage_banner';
     const path = 'meta.json';
     const url = `https://api.github.com/repos/${repo}/contents/${path}`;
 
+    console.log("🌐 [요청] meta.json GET 요청 시작:", url);
     const response = await fetch(url, {
       headers: {
         Authorization: `token ${token}`,
@@ -70,12 +78,14 @@ async function handleFormSubmit(event) {
     if (!response.ok) throw new Error('❌ meta.json 불러오기 실패');
 
     const fileData = await response.json();
+    console.log("📥 [응답] meta.json 내용:", fileData);
     const currentMeta = JSON.parse(atob(fileData.content));
 
     currentMeta.push(newEntry);
 
     const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentMeta, null, 2))));
 
+    console.log("📤 [요청] meta.json 업데이트 시작 (PUT)");
     const updateRes = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -90,6 +100,9 @@ async function handleFormSubmit(event) {
       })
     });
 
+    console.log("📬 [응답] PUT 결과:", updateRes);
+    const updateText = await updateRes.text();
+    console.log("📬 [본문] PUT 응답 본문:", updateText);
     if (!updateRes.ok) throw new Error('❌ meta.json 업데이트 실패');
 
     alert('✅ 배너 등록 완료!');
