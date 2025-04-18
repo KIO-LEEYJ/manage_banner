@@ -1,30 +1,28 @@
-// 🔐 GitHub 토큰 저장
-function saveToken() {
-  const tokenInput = document.getElementById('tokenInput');
-  if (tokenInput && tokenInput.value) {
-    localStorage.setItem('gh_token', tokenInput.value.trim());
-    alert('🔐 토큰이 저장되었습니다!');
-  } else {
-    alert('❗ 토큰을 입력해주세요.');
-  }
-}
-
 // 🔐 GitHub 토큰 불러오기
 function getToken() {
   return localStorage.getItem('gh_token');
 }
 
-// ✅ 페이지 로드시 토큰 자동 세팅
+// ✅ DOM 로드 시 토큰 입력 반영 및 이벤트 바인딩
 window.addEventListener('DOMContentLoaded', () => {
-  const token = getToken();
   const tokenInput = document.getElementById('tokenInput');
-  if (token && tokenInput) {
-    tokenInput.value = token;
-  }
+  const storedToken = getToken();
+  if (tokenInput && storedToken) tokenInput.value = storedToken;
 
   const form = document.getElementById('bannerForm');
   if (form) {
     form.addEventListener('submit', handleFormSubmit);
+  }
+
+  const saveBtn = document.getElementById('saveTokenBtn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      const token = tokenInput.value.trim();
+      if (token) {
+        localStorage.setItem('gh_token', token);
+        alert('🔐 토큰 저장 완료');
+      }
+    });
   }
 });
 
@@ -33,19 +31,19 @@ async function handleFormSubmit(event) {
   event.preventDefault();
 
   const token = getToken();
-  if (!token) return alert('❗ GitHub 토큰이 없습니다.');
+  if (!token) return alert('❗ GitHub 토큰이 없습니다');
 
   const fileInput = document.getElementById('imageUpload');
+  const file = fileInput?.files[0];
+  if (!file) return alert('❗ 이미지를 업로드해주세요');
+
+  const fileName = file.name;
   const folder = document.getElementById('folderSelect').value;
   const start = document.getElementById('startDate').value;
   const end = document.getElementById('endDate').value;
   const active = document.getElementById('activeSelect').value === 'true';
   const priority = parseInt(document.getElementById('prioritySelect').value);
   const linkURL = document.getElementById('linkURL').value.trim();
-
-  if (!fileInput.files.length) return alert('❗ 이미지를 업로드해주세요.');
-  const file = fileInput.files[0];
-  const fileName = file.name;
 
   const newEntry = {
     file: fileName,
@@ -60,43 +58,44 @@ async function handleFormSubmit(event) {
   try {
     const repo = 'KIO-LEEYJ/manage_banner';
     const path = 'meta.json';
-    const apiUrl = `https://api.github.com/repos/${repo}/contents/${path}`;
+    const url = `https://api.github.com/repos/${repo}/contents/${path}`;
 
-    const res = await fetch(apiUrl, {
+    const response = await fetch(url, {
       headers: {
         Authorization: `token ${token}`,
         Accept: 'application/vnd.github.v3+json'
       }
     });
 
-    if (!res.ok) throw new Error('meta.json을 불러오지 못했습니다.');
+    if (!response.ok) throw new Error('❌ meta.json 불러오기 실패');
 
-    const fileData = await res.json();
-    const content = JSON.parse(atob(fileData.content));
-    content.push(newEntry);
+    const fileData = await response.json();
+    const currentMeta = JSON.parse(atob(fileData.content));
 
-    const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
+    currentMeta.push(newEntry);
 
-    const updateRes = await fetch(apiUrl, {
+    const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentMeta, null, 2))));
+
+    const updateRes = await fetch(url, {
       method: 'PUT',
       headers: {
         Authorization: `token ${token}`,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Accept: 'application/vnd.github.v3+json'
       },
       body: JSON.stringify({
-        message: `✨ 배너 추가: ${fileName}`,
+        message: `🎯 배너 추가: ${fileName}`,
         content: updatedContent,
         sha: fileData.sha
       })
     });
 
-    if (!updateRes.ok) throw new Error('meta.json 업데이트 실패');
+    if (!updateRes.ok) throw new Error('❌ meta.json 업데이트 실패');
 
-    alert('✅ 배너가 성공적으로 등록되었습니다!');
+    alert('✅ 배너 등록 완료!');
     location.reload();
   } catch (err) {
     console.error(err);
-    alert('🚨 오류 발생: ' + err.message);
+    alert('🚨 오류: ' + err.message);
   }
 }
