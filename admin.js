@@ -14,14 +14,17 @@ window.addEventListener('DOMContentLoaded', () => {
 async function handleFormSubmit(event) {
   event.preventDefault();
   console.log("📌 handleFormSubmit 작동함");
+  alert("📌 handleFormSubmit 작동함");
 
   const token = document.getElementById('tokenInput')?.value.trim();
   console.log("🔐 입력된 토큰:", token);
+  alert("🔐 입력된 토큰: " + token);
   if (!token) return alert('❗ GitHub 토큰을 입력해주세요');
 
   const fileInput = document.getElementById('imageUpload');
   const file = fileInput?.files[0];
   console.log("🖼️ 이미지 선택 여부:", !!file);
+  alert("🖼️ 이미지 선택됨: " + (!!file));
   if (!file) return alert('❗ 이미지를 업로드해주세요');
 
   const fileName = file.name;
@@ -45,6 +48,7 @@ async function handleFormSubmit(event) {
   try {
     console.log("✅ [디버깅] Form 데이터 수집 완료");
     console.log("📦 newEntry 객체:", newEntry);
+    alert("📦 배너 정보 수집 완료\n파일: " + fileName);
 
     const repo = 'KIO-LEEYJ/manage_banner';
     const path = 'meta.json';
@@ -62,6 +66,7 @@ async function handleFormSubmit(event) {
 
     const fileData = await response.json();
     console.log("📥 [응답] meta.json 내용:", fileData);
+    alert("📥 meta.json 불러오기 완료 (SHA: " + fileData.sha + ")");
     const currentMeta = JSON.parse(atob(fileData.content));
 
     currentMeta.push(newEntry);
@@ -85,6 +90,7 @@ async function handleFormSubmit(event) {
 
     const updateText = await updateRes.text();
     console.log("📬 [PUT 응답 본문]:", updateText);
+    alert("📬 PUT 응답 수신 완료\n결과: " + updateText.slice(0, 120));
     if (!updateRes.ok) throw new Error('❌ meta.json 업데이트 실패');
 
     alert('✅ 배너 등록 완료!');
