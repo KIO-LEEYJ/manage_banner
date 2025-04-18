@@ -1,0 +1,38 @@
+[
+  {
+    "file": "wony.gif",
+    "folder": "A",
+    "start": "2025-04-17",
+    "end": "2025-05-10",
+    "active": true,
+    "priority": 3,
+    "linkURL": "https://www.pandalive.co.kr/channel/xowony/notice"
+  },
+  {
+    "file": "sua.gif",
+    "folder": "B",
+    "start": "2025-04-17",
+    "end": "2025-05-10",
+    "active": true,
+    "priority": 2,
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
+  },
+  {
+    "file": "test_A.jpg",
+    "folder": "A",
+    "start": "2025-04-20",
+    "end": "2025-04-30",
+    "active": true,
+    "priority": 1,
+    "linkURL": "https://example.com/eventA"
+  },
+  {
+    "file": "test_B.jpg",
+    "folder": "B",
+    "start": "2025-04-22",
+    "end": "2025-05-05",
+    "active": true,
+    "priority": 4,
+    "linkURL": "https://example.com/brandB"
+  }
+]
