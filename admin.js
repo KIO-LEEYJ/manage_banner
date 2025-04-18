@@ -13,12 +13,15 @@ window.addEventListener('DOMContentLoaded', () => {
 // 📤 Form 제출 핸들러
 async function handleFormSubmit(event) {
   event.preventDefault();
+  console.log("📌 handleFormSubmit 작동함");
 
   const token = document.getElementById('tokenInput')?.value.trim();
+  console.log("🔐 입력된 토큰:", token);
   if (!token) return alert('❗ GitHub 토큰을 입력해주세요');
 
   const fileInput = document.getElementById('imageUpload');
   const file = fileInput?.files[0];
+  console.log("🖼️ 이미지 선택 여부:", !!file);
   if (!file) return alert('❗ 이미지를 업로드해주세요');
 
   const fileName = file.name;
