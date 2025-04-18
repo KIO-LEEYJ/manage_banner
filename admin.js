@@ -1,28 +1,12 @@
-// 🔐 GitHub 토큰 불러오기
-function getToken() {
-  return localStorage.getItem('gh_token');
-}
+// ✅ 1회성 토큰 기반 GitHub 배너 등록 시스템
+//     - localStorage 없이 매번 토큰 입력
+//     - meta.json 업데이트 후 즉시 리로드
 
-// ✅ DOM 로드 시 토큰 입력 반영 및 이벤트 바인딩
+// ✅ DOM 로드 후 이벤트 연결
 window.addEventListener('DOMContentLoaded', () => {
-  const tokenInput = document.getElementById('tokenInput');
-  const storedToken = getToken();
-  if (tokenInput && storedToken) tokenInput.value = storedToken;
-
   const form = document.getElementById('bannerForm');
   if (form) {
     form.addEventListener('submit', handleFormSubmit);
-  }
-
-  const saveBtn = document.getElementById('saveTokenBtn');
-  if (saveBtn) {
-    saveBtn.addEventListener('click', () => {
-      const token = tokenInput.value.trim();
-      if (token) {
-        localStorage.setItem('gh_token', token);
-        alert('🔐 토큰 저장 완료');
-      }
-    });
   }
 });
 
@@ -30,8 +14,8 @@ window.addEventListener('DOMContentLoaded', () => {
 async function handleFormSubmit(event) {
   event.preventDefault();
 
-  const token = getToken();
-  if (!token) return alert('❗ GitHub 토큰이 없습니다');
+  const token = document.getElementById('tokenInput')?.value.trim();
+  if (!token) return alert('❗ GitHub 토큰을 입력해주세요');
 
   const fileInput = document.getElementById('imageUpload');
   const file = fileInput?.files[0];
@@ -57,17 +41,13 @@ async function handleFormSubmit(event) {
 
   try {
     console.log("✅ [디버깅] Form 데이터 수집 완료");
-    console.log("🧾 fileName:", fileName);
-    console.log("📁 folder:", folder);
-    console.log("📅 기간:", start, "~", end);
-    console.log("🔘 active:", active, " / 🏷️ priority:", priority);
-    console.log("🔗 linkURL:", linkURL);
     console.log("📦 newEntry 객체:", newEntry);
+
     const repo = 'KIO-LEEYJ/manage_banner';
     const path = 'meta.json';
     const url = `https://api.github.com/repos/${repo}/contents/${path}`;
 
-    console.log("🌐 [요청] meta.json GET 요청 시작:", url);
+    // GET meta.json
     const response = await fetch(url, {
       headers: {
         Authorization: `token ${token}`,
@@ -85,7 +65,7 @@ async function handleFormSubmit(event) {
 
     const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentMeta, null, 2))));
 
-    console.log("📤 [요청] meta.json 업데이트 시작 (PUT)");
+    // PUT meta.json 업데이트
     const updateRes = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -100,9 +80,8 @@ async function handleFormSubmit(event) {
       })
     });
 
-    console.log("📬 [응답] PUT 결과:", updateRes);
     const updateText = await updateRes.text();
-    console.log("📬 [본문] PUT 응답 본문:", updateText);
+    console.log("📬 [PUT 응답 본문]:", updateText);
     if (!updateRes.ok) throw new Error('❌ meta.json 업데이트 실패');
 
     alert('✅ 배너 등록 완료!');
