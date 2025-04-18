@@ -12,6 +12,13 @@
   <div class="w-full max-w-xl bg-white shadow-xl rounded-lg p-8">
     <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">🎯 배너 등록 관리자</h1>
 
+    <!-- GitHub 토큰 입력 -->
+    <div class="mb-6">
+      <label for="tokenInput" class="block font-semibold mb-1 text-gray-700">🔐 GitHub Token</label>
+      <input type="password" id="tokenInput" class="w-full border rounded px-3 py-2" placeholder="토큰을 입력하세요" />
+      <p class="text-sm text-gray-500 mt-1">이 토큰은 브라우저에만 저장되며 GitHub meta.json 저장 시 사용됩니다.</p>
+    </div>
+
     <form id="bannerForm" class="space-y-4">
       <!-- 이미지 업로드 -->
       <div>
