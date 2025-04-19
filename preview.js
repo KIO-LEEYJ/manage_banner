@@ -1,5 +1,5 @@
 const metaURL = "https://kio-leeyj.github.io/manage_banner/meta.json";
-const baseImagePath = "https://kio-leeyj.github.io/manage_banner";
+const baseImagePath = "https://kio-leeyj.github.io/manage_banner/";
 const formatDate = (dateStr) => dateStr.replace(/-/g, '.');
 const today = new Date();
 
