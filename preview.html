@@ -14,6 +14,20 @@
 
     <section>
       <h2 class="text-xl font-semibold mb-4">🅰️ A 배너</h2>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex gap-2 items-center">
+          <label for="sortA" class="text-sm font-medium">정렬:</label>
+          <select id="sortA" class="text-sm border rounded p-1">
+            <option value="priority">우선순위순</option>
+            <option value="start">시작일순</option>
+            <option value="end">종료일순</option>
+          </select>
+        </div>
+        <label class="flex items-center text-sm gap-1">
+          <input type="checkbox" id="filterA" class="form-checkbox">
+          노출 중만 보기
+        </label>
+      </div>
       <div id="bannerA" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
         <!-- 카드들이 여기에 출력됩니다 -->
       </div>
@@ -21,6 +35,20 @@
 
     <section>
       <h2 class="text-xl font-semibold mb-4">🅱️ B 배너</h2>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex gap-2 items-center">
+          <label for="sortB" class="text-sm font-medium">정렬:</label>
+          <select id="sortB" class="text-sm border rounded p-1">
+            <option value="priority">우선순위순</option>
+            <option value="start">시작일순</option>
+            <option value="end">종료일순</option>
+          </select>
+        </div>
+        <label class="flex items-center text-sm gap-1">
+          <input type="checkbox" id="filterB" class="form-checkbox">
+          노출 중만 보기
+        </label>
+      </div>
       <div id="bannerB" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <!-- 카드들이 여기에 출력됩니다 -->
       </div>
