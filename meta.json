@@ -2,7 +2,7 @@
   {
     "file": "wony.gif",
     "folder": "A",
-    "start": "2025-04-17",
+    "start": "2025-04-19",
     "end": "2025-05-10",
     "active": true,
     "priority": 3,
@@ -11,7 +11,7 @@
   {
     "file": "sua.gif",
     "folder": "B",
-    "start": "2025-04-17",
+    "start": "2025-04-19",
     "end": "2025-05-10",
     "active": true,
     "priority": 2,
@@ -20,19 +20,28 @@
   {
     "file": "test_A.jpg",
     "folder": "A",
-    "start": "2025-04-20",
+    "start": "2025-04-19",
     "end": "2025-04-30",
     "active": true,
     "priority": 1,
-    "linkURL": "https://example.com/eventA"
+    "linkURL": "https://www.pandalive.co.kr/channel/xowony/notice"
   },
   {
     "file": "test_B.jpg",
     "folder": "B",
-    "start": "2025-04-22",
+    "start": "2025-04-19",
     "end": "2025-05-05",
     "active": true,
     "priority": 4,
-    "linkURL": "https://example.com/brandB"
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
+  }
+  {
+    "file": "sua11.gif",
+    "folder": "A",
+    "start": "2025-04-19",
+    "end": "2025-05-05",
+    "active": true,
+    "priority": 4,
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
   }
 ]
