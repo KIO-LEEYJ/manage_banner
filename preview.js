@@ -26,7 +26,7 @@ fetch(metaURL)
       card.appendChild(badge);
 
       const img = document.createElement("img");
-      img.src = `${baseImagePath}/${banner.folder}/${banner.file}`;
+      img.src = `${baseImagePath}/${banner.folder}/${banner.file}?v=${Date.now()}`;
       img.alt = banner.file;
       img.className = "w-full h-auto mb-3 rounded";
       img.onerror = () => {
