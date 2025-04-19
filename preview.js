@@ -44,7 +44,7 @@ function renderSection(folder) {
   }
 
   filtered.sort((a, b) => {
-    if (sortKey === "priority") return a.priority - b.priority;
+    if (sortKey === "priority") return b.priority - a.priority;
     if (sortKey === "start") return new Date(b.start) - new Date(a.start);
     if (sortKey === "end") return new Date(a.end) - new Date(b.end);
     return 0;
