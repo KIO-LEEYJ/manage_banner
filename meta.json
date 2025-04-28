@@ -5,8 +5,44 @@
     "start": "2025-04-19",
     "end": "2025-05-10",
     "active": true,
-    "priority": 3,
+    "priority": 5,
     "linkURL": "https://www.pandalive.co.kr/channel/xowony/notice"
+  },
+  {
+    "file": "sua11.gif",
+    "folder": "A",
+    "start": "2025-04-18",
+    "end": "2025-05-20",
+    "active": true,
+    "priority": 4,
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
+  },
+  {
+    "file": "test_A-01.jpg",
+    "folder": "A",
+    "start": "2025-04-18",
+    "end": "2025-05-20",
+    "active": true,
+    "priority": 1,
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
+  },
+  {
+    "file": "test_A-02.jpg",
+    "folder": "A",
+    "start": "2025-04-18",
+    "end": "2025-05-20",
+    "active": true,
+    "priority": 1,
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
+  },
+  {
+    "file": "test_A-03.jpg",
+    "folder": "A",
+    "start": "2025-04-18",
+    "end": "2025-05-20",
+    "active": true,
+    "priority": 1,
+    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
   },
   {
     "file": "sua.gif",
@@ -18,28 +54,10 @@
     "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
   },
   {
-    "file": "test_A.jpg",
-    "folder": "A",
-    "start": "2025-04-19",
-    "end": "2025-04-30",
-    "active": true,
-    "priority": 1,
-    "linkURL": "https://www.pandalive.co.kr/channel/xowony/notice"
-  },
-  {
     "file": "test_B.jpg",
     "folder": "B",
     "start": "2025-04-19",
     "end": "2025-05-05",
-    "active": true,
-    "priority": 4,
-    "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
-  },
-  {
-    "file": "sua11.gif",
-    "folder": "A",
-    "start": "2025-04-18",
-    "end": "2025-04-20",
     "active": true,
     "priority": 4,
     "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
