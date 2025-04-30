@@ -41,7 +41,7 @@
     "start": "2025-04-19",
     "end": "2025-05-10",
     "active": true,
-    "priority": 2,
+    "priority": 5,
     "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
   },
   {
@@ -50,7 +50,7 @@
     "start": "2025-04-19",
     "end": "2025-05-05",
     "active": true,
-    "priority": 4,
+    "priority": 1,
     "linkURL": "https://www.pandalive.co.kr/channel/likecherrry/notice"
   }
 ]
